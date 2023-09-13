@@ -5,6 +5,7 @@ import Dropdown from "./components/Dropdown";
 import EmplyeeDropDown from "./components/EmplyeeDropDown";
 import Header from "./components/Header";
 import InfiniteScrollCalendar from "./components/InfiniteScrollCalendar";
+import UpdateEmployee from "./components/UpdateEmployee";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/register' exact element={<Register />} />
           <Route path='/employee' exact element={<Employee />} />
+          <Route path='/updateemployee/:id' exact element={<UpdateEmployee />} />
           <Route path='/dropdownsearch' exact element={<Dropdown />} />
           <Route path='/dropdownemployeesearch' exact element={<EmplyeeDropDown />} />
           <Route path='/infinitescroll' exact element={<InfiniteScrollCalendar />} />

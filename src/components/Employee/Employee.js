@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import TableComponent from '../TableComponent';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Employee = () => {
+    const navigate = useNavigate()
     const [employeeData, setEmployeeData] = useState([])
     const headings = ['Name', 'DOB', 'Start Date', 'End Date', 'Description'];
 
@@ -15,8 +16,19 @@ const Employee = () => {
             .catch(err => console.log(err))
     }, [])
 
-    const deleteEmployeeHandler = (getId) => {
-        console.log("llllllll", getId)
+    const deleteEmployeeHandler = (getId, type) => {
+        console.log("llllllll", getId, type)
+        if (type === "Delete") {
+            axios.delete(`https://sweede.app/DeliveryBoy/delete-Employee/${getId}`)
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(err => console.log(err))
+        }
+        if (type === "Edit") {
+            navigate(`/updateemployee/${getId}`)
+        }
+
     }
 
     return (

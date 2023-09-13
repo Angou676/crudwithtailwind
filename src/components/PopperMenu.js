@@ -69,7 +69,7 @@ const PopperMenu = ({ data, deleteEmployeeHandler }) => {
               className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center"
               onClick={() => {
                 handleOptionClick(option)
-                deleteEmployeeHandler(data.id)
+                deleteEmployeeHandler(data.id, option.label)
               }}
             >
               <i className={option.iconClass} aria-hidden="true"></i> &nbsp;<span> {option.label}</span>

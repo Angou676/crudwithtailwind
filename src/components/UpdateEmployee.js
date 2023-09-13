@@ -5,13 +5,16 @@ import TextEditor from './TextEditor';
 import DatePickComp from './DatePickerComp/DatePickComp';
 import CustomInputField from './DatePickerComp';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
 
 const formateDate = (getDate) => {
     const date = new Date(getDate)
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
 }
 
-const Register = () => {
+const UpdateEmployee = () => {
+    const { id } = useParams()
     const [formData, setFormData] = useState({
         FirstName: "",
         LastName: "",
@@ -39,7 +42,8 @@ const Register = () => {
             StartDate: formateDate(endDate),
             Study: formData.Study
         }
-        axios.post(`https://sweede.app/DeliveryBoy/Add-Employee/`, data)
+        console.log("ffffffffffffff", data)
+        axios.post(`https://sweede.app/DeliveryBoy/update-Employee/${id}`, data)
             .then(res => {
                 console.log("ffffff", res)
             })
@@ -49,9 +53,9 @@ const Register = () => {
     return (
         <>
             <div className='w-width90 m-auto pt-10 text-center'>
-                <h1 className='font-bold text-center'>Employee Registration Form</h1>
+                <h1 className='font-bold text-center'>Employee Form Update</h1>
                 <section className='border border-grey-100 w-width50 m-mauto mt-m20 p-10' >
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between '>
                         <div className="flex flex-col">
                             <label htmlFor="input1" className="text-left text-gray-600 mb-1 ">First Name<span>*</span></label>
                             <input
@@ -75,6 +79,7 @@ const Register = () => {
                             />
                         </div>
                     </div>
+
 
                     <div className="flex flex-col text-left mt-m10 w-full" >
                         <label htmlFor="input1" className="text-left text-gray-600 mb-1 ">DOB</label>
@@ -106,11 +111,10 @@ const Register = () => {
                     </div>
 
                     <div className="flex justify-between text-left mt-m10 w-full">
-
+                        {/* <label htmlFor="input1" className="text-left text-gray-600 mb-1">
+                            Start and End date
+                        </label> */}
                         <div className="flex flex-col rounded-md " style={{ width: '45%' }}>
-                            <label htmlFor="input1" className="text-left text-gray-600 mb-1">
-                                Start  date
-                            </label>
                             <DatePickComp
                                 selected={startDate}
                                 onChange={setStartDate}
@@ -120,9 +124,6 @@ const Register = () => {
                             />
                         </div>
                         <div className="flex flex-col rounded-md " style={{ width: '45%' }}>
-                            <label htmlFor="input1" className="text-left text-gray-600 mb-1">
-                                End  date
-                            </label>
                             <DatePickComp
                                 selected={endDate}
                                 onChange={setEndDate}
@@ -166,7 +167,7 @@ const Register = () => {
                             className="w-full px-3 py-2 bg-blue-900 rounded-md border h-10 w-width40 text-white"
                             onClick={handleSelectChange}
                         >
-                            Save
+                            Update
                         </button>
                     </div>
                 </section>
@@ -189,4 +190,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default UpdateEmployee
